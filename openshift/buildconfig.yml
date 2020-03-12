@@ -3,6 +3,9 @@ apiVersion: "v1"
 metadata:
   name: "cant-touch-this-pipeline"
 spec:
+  source:
+    git:
+      uri: https://github.com/sholly/cant-touch-this.git
   strategy:
     jenkinsPipelineStrategy:
       jenkinsfile: Jenkinsfile
