@@ -5,7 +5,7 @@ metadata:
 spec:
   source:
     git:
-      uri: git@github.com/sholly/cant-touch-this.git
+      uri: ssh://git@github.com/sholly/cant-touch-this.git
   strategy:
     jenkinsPipelineStrategy:
       jenkinsfilePath: Jenkinsfile
