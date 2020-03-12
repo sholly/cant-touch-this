@@ -6,6 +6,8 @@ spec:
   source:
     git:
       uri: ssh://git@github.com/sholly/cant-touch-this.git
+    sourceSecret:
+      name: "cant-touch-this"
   strategy:
     jenkinsPipelineStrategy:
       jenkinsfilePath: Jenkinsfile
