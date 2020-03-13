@@ -7,7 +7,7 @@ spec:
     git:
       uri: https://github.com/sholly/cant-touch-this.git
     sourceSecret:
-      name: "cant-touch-this"
+      name: "sholly-github"
   strategy:
     jenkinsPipelineStrategy:
       jenkinsfilePath: Jenkinsfile
