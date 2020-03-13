@@ -5,6 +5,7 @@ pipeline {
     }
   }
 
+  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'ci-cd-sholly-github']]) {
   stages {
     stage('preamble') {
         steps {
@@ -25,4 +26,4 @@ pipeline {
         }
     }
   }
-}
+  }
