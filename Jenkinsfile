@@ -5,7 +5,7 @@ pipeline {
     }
   }
 
-  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'ci-cd-sholly-github']]) {
+  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'ci-cd-sholly-github', passwordVariable: 'TOKEN']]) {
   stages {
     stage('preamble') {
         steps {
@@ -13,6 +13,7 @@ pipeline {
                 openshift.withCluster() {
                     openshift.withProject() {
                         echo "project: ${openshift.project}"
+                        echo "token: $TOKEN"
                     }
                 }
             }
