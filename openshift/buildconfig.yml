@@ -11,4 +11,7 @@ spec:
   strategy:
     jenkinsPipelineStrategy:
       jenkinsfilePath: Jenkinsfile
+      env:
+        - name: "BUILD_LOGLEVEL"
+          value: "3"
     type: JenkinsPipeline

@@ -5,26 +5,24 @@ pipeline {
     }
   }
 
-  withCredentials([[$class: 'UsernamePasswordMultiBinding', credentialsId: 'ci-cd-sholly-github', passwordVariable: 'TOKEN']]) {
   stages {
     stage('preamble') {
+       stage('preamble') {
         steps {
             script {
                 openshift.withCluster() {
                     openshift.withProject() {
-                        echo "project: ${openshift.project}"
-                        echo "token: $TOKEN"
+                        echo "using project ${openshift.project()}"
                     }
                 }
             }
-        }
+         }
+       }
     }
+
     stage('build') {
         steps {
-            script {
-                sh "mvn clean package"
-            }
+            sh "mvn clean compile"
         }
     }
-  }
   }
