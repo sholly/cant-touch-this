@@ -1,17 +1,44 @@
-kind: "BuildConfig"
 apiVersion: "v1"
-metadata:
-  name: "cant-touch-this-pipeline"
-spec:
-  source:
-    git:
-      uri: https://github.com/sholly/cant-touch-this.git
-    sourceSecret:
-      name: "sholly-github"
-  strategy:
-    jenkinsPipelineStrategy:
-      jenkinsfilePath: Jenkinsfile
-      env:
-        - name: "BUILD_LOGLEVEL"
-          value: "3"
-    type: JenkinsPipeline
+kind: Template
+objects:
+- apiVersion: "v1"
+  kind: "BuildConfig"
+  metadata:
+    name: "cant-touch-this-pipeline"
+  spec:
+    source:
+      git:
+        uri: ssh://git@github.com/sholly/cant-touch-this.git
+      sourceSecret:
+        name: "shollygithub"
+    strategy:
+      jenkinsPipelineStrategy:
+        jenkinsfilePath: Jenkinsfile
+        env:
+          - name: "BUILD_LOGLEVEL"
+            value: "3"
+      type: JenkinsPipeline
+- apiVersion: v1
+  kind: Secret
+  data:
+    ssh-privatekey: ${SSH_PRIVATE_KEY}
+  metadata:
+    name: ${SSH_KEY_NAME}
+    namespace: ci-cd
+  type: kubernetes.io/ssh-auth
+parameters:
+- description: Namespace
+  displayName: Namespace
+  name: NAMESPACE
+  required: true
+  value: 
+- description: ssh key name
+  displayName: ssh key name
+  name: SSH_KEY_NAME
+  required: true
+  value: 
+- description: ssh private key value
+  displayName: ssh private key
+  name: SSH_PRIVATE_KEY
+  required: true
+  value: 
