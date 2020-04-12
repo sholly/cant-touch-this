@@ -39,6 +39,9 @@ objects:
           kind: ImageStreamTag
           name: "${IMAGE_STREAM_TAG_NAME}"
           namespace: "${IMAGE_STREAM_NAMESPACE}"
+        env:
+          - name: "BUILD_LOGLEVEL"
+            value: "5"
       type: Source
 - apiVersion: v1
   kind: Secret
@@ -79,4 +82,4 @@ parameters:
 - description: Image stream tag for the image you'd like to use to build the application
   name: IMAGE_STREAM_TAG_NAME
   required: true
-  value: redhat-openjdk18-openshift:1.1
+  value: redhat-openjdk18-openshift:1.5
