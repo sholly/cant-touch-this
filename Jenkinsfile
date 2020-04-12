@@ -28,14 +28,18 @@ pipeline {
     }
     
     stage ('Build development image') {
-      sh """
-        set -x
-        rm -rf oc-build && mkdir -p oc-build/deployments
-        for t in \$(echo "jar;war;ear" | tr ";" "\\n"); do
-          cp -rfv ./target/*.\$t oc-build/deployments/ 2> /dev/null || echo "No \$t files"
-        done
-        oc start-build ${env.APP_NAME} --from-dir=oc-build --wait=true --follow=true || exit 1
-      """
+      steps {
+        script {
+        sh """
+          set -x
+          rm -rf oc-build && mkdir -p oc-build/deployments
+          for t in \$(echo "jar;war;ear" | tr ";" "\\n"); do
+            cp -rfv ./target/*.\$t oc-build/deployments/ 2> /dev/null || echo "No \$t files"
+          done
+          oc start-build ${env.APP_NAME} --from-dir=oc-build --wait=true --follow=true || exit 1
+        """
+        }
+      }
     }
 
   }
