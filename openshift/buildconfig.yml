@@ -54,6 +54,34 @@ objects:
             value: "5"
       type: Source
 - apiVersion: v1
+  kind: "BuildConfig"
+  metadata:
+    labels:
+      application: ${APPLICATION_NAME}
+    name: ${APPLICATION_NAME}-quayio
+    namespace: "${NAMESPACE}"
+  spec:
+    output:
+      to:
+        kind: DockerImage
+        name: quay.io/sholly/${APPLICATION_NAME}:latest
+      pushSecret:
+        name: quayio
+    source:
+      binary: {}
+      type: Binary
+    strategy:
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: "${IMAGE_STREAM_TAG_NAME}"
+          namespace: "${IMAGE_STREAM_NAMESPACE}"
+        env:
+          - name: "BUILD_LOGLEVEL"
+            value: "5"
+      type: Source
+
+- apiVersion: v1
   kind: Secret
   data:
     ssh-privatekey: ${SSH_PRIVATE_KEY}
