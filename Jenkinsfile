@@ -19,18 +19,11 @@ pipeline {
       }
     }
 
-    stage ('build') {
-      steps {
-        script {
-          sh "mvn clean compile"
-        }
-      }
-    }
-
     stage ('package') {
       steps {
         script {
           sh "mvn package"
+          sh "ls -lR . "
         }
       }
     }
@@ -39,8 +32,8 @@ pipeline {
       steps {
         script {
             openshift.withCluster() {
-                openshift.withProject() {
-                    openshift.selector("bc", "cant-touch-this").startBuild("--from-file=./cant-touch-this-0.0.1-SNAPSHOT.jar", "--wait=true")
+                openshift.withProject() {}
+                    openshift.selector("bc", "cant-touch-this").startBuild("--from-file=./target/cant-touch-this-0.0.1-SNAPSHOT.jar", "--wait=true")
                 }
             }
         }
