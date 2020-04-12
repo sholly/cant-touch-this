@@ -39,7 +39,7 @@ pipeline {
             }
         }
       }
-    stage ('Build development image') {
+    stage ('Build quay.io image') {
       steps {
         script {
             openshift.withCluster() {
