@@ -39,5 +39,16 @@ pipeline {
             }
         }
       }
-    }
+    stage ('Build development image') {
+      steps {
+        script {
+            openshift.withCluster() {
+                openshift.withProject() {
+                    openshift.selector("bc", "cant-touch-this-quayio").startBuild("--from-file=./target/cant-touch-this-0.0.1-SNAPSHOT.jar", "--wait=true")
+                }
+                }
+            }
+        }
+      }
+  }
 }
