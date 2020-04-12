@@ -26,6 +26,14 @@ pipeline {
         }
       }
     }
+
+    stage ('package') {
+      steps {
+        script {
+          sh "mvn package"
+        }
+      }
+    }
     
     stage ('Build development image') {
       steps {
