@@ -19,6 +19,28 @@ objects:
             value: "3"
       type: JenkinsPipeline
 - apiVersion: v1
+  kind: "BuildConfig"
+  metadata:
+    labels:
+      application: ${APPLICATION_NAME}
+    name: ${APPLICATION_NAME}
+    namespace: "${NAMESPACE}"
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: ${APPLICATION_NAME}:latest
+    source:
+      binary: {}
+      type: Binary
+    strategy:
+      sourceStrategy:
+        from:
+          kind: ImageStreamTag
+          name: "${IMAGE_STREAM_TAG_NAME}"
+          namespace: "${IMAGE_STREAM_NAMESPACE}"
+      type: Source
+- apiVersion: v1
   kind: Secret
   data:
     ssh-privatekey: ${SSH_PRIVATE_KEY}
@@ -27,6 +49,11 @@ objects:
     namespace: ci-cd
   type: kubernetes.io/ssh-auth
 parameters:
+- description: Application Name
+  displayName: Application Name
+  name: APPLICATION_NAME
+  required: true
+  value: cant-touch-this
 - description: Namespace
   displayName: Namespace
   name: NAMESPACE
@@ -42,3 +69,14 @@ parameters:
   name: SSH_PRIVATE_KEY
   required: true
   value: 
+- description: Namespace in which the ImageStreams for Red Hat Middleware images are
+    installed. These ImageStreams are normally installed in the openshift namespace.
+    You should only need to modify this if you've installed the ImageStreams in a
+    different namespace/project.
+  name: IMAGE_STREAM_NAMESPACE
+  required: true
+  value: openshift
+- description: Image stream tag for the image you'd like to use to build the application
+  name: IMAGE_STREAM_TAG_NAME
+  required: true
+  value: redhat-openjdk18-openshift:1.1
