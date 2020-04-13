@@ -13,8 +13,8 @@ pipeline {
             openshift.withProject() {
               sh "git tag -l | tail -1"
               //def lastTag = sh(returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()
-              env.LAST_TAG = sh("git tag -l |tail -l ").trim()
-              echo "${env.LAST_TAG}"
+              LAST_TAG = sh("git tag -l |tail -l ").trim()
+              echo "${LAST_TAG}"
             }
           }
         }
