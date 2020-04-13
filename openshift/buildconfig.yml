@@ -47,7 +47,6 @@ objects:
           - name: "BUILD_LOGLEVEL"
             value: "3"
       type: JenkinsPipeline
-
 - apiVersion: v1
   kind: "BuildConfig"
   metadata:
