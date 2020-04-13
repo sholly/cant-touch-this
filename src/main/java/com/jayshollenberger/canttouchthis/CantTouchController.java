@@ -8,6 +8,6 @@ public class CantTouchController {
 
     @GetMapping("/cant")
     public String cantTouch() {
-        return "stop it";
+        return "after v0.0.2";
     }
 }
