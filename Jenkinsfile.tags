@@ -38,7 +38,7 @@ pipeline {
                      openshift.withProject() {
                          tagsbc = openshift.selector("bc", "cant-touch-this-quayio-tag")
                          echo tagsbc.spec.output.to.name
-                         tagsbc.spec.output.to.name = "quay.io/sholly/cant-touch-this:${LAST_TAG}"
+                         //tagsbc.spec.output.to.name = "quay.io/sholly/cant-touch-this:${LAST_TAG}"
                          //openshift.patch("bc/cant-touch-this-quayio-tag", '\'{"spec":{"output":{"to":{"name":"quay.io/sholly/cant-touch-this:${LAST_TAG"}"}}}}\'')
                          //openshift.selector("bc", "cant-touch-this-quayio-tag").startBuild("--from-file=./target/cant-touch-this-0.0.1-SNAPSHOT.jar", "--wait=true")
 
