@@ -13,6 +13,7 @@ pipeline {
             openshift.withProject() {
               sh "git tag -l | tail -1"
               def lastTag = sh(returnStdout: true, script: "git tag -l | tail -1").trim()
+              sh "git checkout ${lastTag}"
 
             }
           }
