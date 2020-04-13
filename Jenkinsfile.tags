@@ -11,7 +11,7 @@ pipeline {
         script {
           openshift.withCluster() {
             openshift.withProject() {
-              sh "git tag --sort version:refname | tail -1"
+              sh "git tag -l | tail -1"
               //def lastTag = sh(returnStdout: true, script: "git tag --sort version:refname | tail -1").trim()
             }
           }
