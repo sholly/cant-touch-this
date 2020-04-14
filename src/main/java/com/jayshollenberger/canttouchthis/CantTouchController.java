@@ -8,7 +8,7 @@ public class CantTouchController {
 
     @GetMapping("/cant")
     public String cantTouch() {
-        return "after v0.0.6";
+        return "v0.0.7";
     }
 
     @GetMapping("/touch")
