@@ -172,4 +172,4 @@ parameters:
 - description: Quay build tag
   name: BUILD_TAG
   required: true
-  value: latest
+  value: devrc
