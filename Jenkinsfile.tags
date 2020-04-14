@@ -41,7 +41,7 @@ pipeline {
                          tagsbc.spec.output.to.name = "quay.io/sholly/cant-touch-this:${LAST_TAG}"
                          openshift.apply(tagsbc)
                          echo "${tagsbc}"
-                         openshift.selector("bc", "cant-touch-this-quayio-tags").startBuild("--from-file=./target/cant-touch-this-0.0.1-SNAPSHOT.jar", "--wait=true")
+                         openshift.selector("bc", "cant-touch-this-quayio-tag").startBuild("--from-file=./target/cant-touch-this-0.0.1-SNAPSHOT.jar", "--wait=true")
                          //tagsbc.spec.output.to.name = "quay.io/sholly/cant-touch-this:${LAST_TAG}"
                          //openshift.patch("bc/cant-touch-this-quayio-tag", '\'{"spec":{"output":{"to":{"name":"quay.io/sholly/cant-touch-this:${LAST_TAG"}"}}}}\'')
                          //openshift.selector("bc", "cant-touch-this-quayio-tag").startBuild("--from-file=./target/cant-touch-this-0.0.1-SNAPSHOT.jar", "--wait=true")
