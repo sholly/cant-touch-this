@@ -45,7 +45,7 @@ pipeline {
         script {
           openshift.withCluster() {
               openshift.withProject() {
-                  def commit_abbrev = sh(returnStdout: true, script: "echo ${env.GIT_COMMIT} | cut -c 12")
+                  def commit_abbrev = sh(returnStdout: true, script: "echo ${env.GIT_COMMIT} | cut -c -12")
                   echo "commit abbreviated: ${commit_abbrev}"
                   imgbc = openshift.selector("bc", "cant-touch-this-quayio").object()
                   imgbc.spec.output.to.name = "quay.io/sholly/cant-touch-this:${commit_abbrev}"
