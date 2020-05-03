@@ -29,17 +29,17 @@ pipeline {
       }
     }
     
-//     stage ('Build development image') {
-//       steps {
-//         script {
-//             openshift.withCluster() {
-//                 openshift.withProject() {
-//                     openshift.selector("bc", "cant-touch-this").startBuild("--from-file=./target/cant-touch-this.jar", "--wait=true")
-//                 }
-//                 }
-//             }
-//         }
-//       }
+     stage ('Build development image') {
+       steps {
+         script {
+             openshift.withCluster() {
+                 openshift.withProject() {
+                     openshift.selector("bc", "cant-touch-this").startBuild("--from-file=./target/cant-touch-this.jar", "--wait=true")
+                 }
+                 }
+             }
+         }
+       }
     stage ('Build quay.io image') {
       steps {
         script {
