@@ -134,6 +134,7 @@ objects:
   metadata:
     labels:
       application: ${APPLICATION_NAME}
+      credential.sync.jenkins.openshift.io: 'true'
     name: ${SSH_KEY_NAME}
     namespace: ci-cd
   type: kubernetes.io/ssh-auth
