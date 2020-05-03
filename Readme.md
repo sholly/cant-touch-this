@@ -1,3 +1,3 @@
 This is a placeholder, just working on a private project for openshift testing.
-1. one 
-2. two
+dont forget to update the openshift-sync version in Jenkins, otherwise you will not be 
+able to pull from private repos no matter what you do. 
