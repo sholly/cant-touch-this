@@ -1,0 +1,28 @@
+apiVersion: "v1"
+kind: Template
+objects:
+- apiVersion: v1
+  kind: Secret
+  data:
+    ssh-privatekey: ${SSH_PRIVATE_KEY}
+  metadata:
+    labels:
+      credential.sync.jenkins.openshift.io: 'true'
+    name: ${SSH_KEY_NAME}
+    namespace: ${NAMESPACE}
+parameters:
+- description: Namespace
+  displayName: Namespace
+  name: NAMESPACE
+  required: true
+  value:
+- description: ssh key name
+  displayName: ssh key name
+  name: SSH_KEY_NAME
+  required: true
+  value:
+- description: ssh private key value
+  displayName: ssh private key value
+  name: SSH_PRIVATE_KEY
+  required: true
+  value:
