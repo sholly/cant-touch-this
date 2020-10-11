@@ -1,7 +1,7 @@
 pipeline {
   agent {
     node {
-        label 'maven'
+        label 'master'
     }
   }
 
@@ -16,15 +16,6 @@ pipeline {
 
             }
           }
-        }
-      }
-    }
-
-    stage ('package') {
-      steps {
-        script {
-          sh "mvn package"
-          sh "ls -lR . "
         }
       }
     }
