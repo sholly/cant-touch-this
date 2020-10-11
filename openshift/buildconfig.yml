@@ -31,6 +31,26 @@ objects:
 - apiVersion: "v1"
   kind: "BuildConfig"
   metadata:
+    name: "cant-touch-this-pipeline-soapui"
+    labels:
+      application: ${APPLICATION_NAME}
+  spec:
+    source:
+      git:
+        uri: ssh://git@github.com/sholly/cant-touch-this.git
+      sourceSecret:
+        name: ${SSH_KEY_NAME}
+    strategy:
+      jenkinsPipelineStrategy:
+        jenkinsfilePath: Jenkinsfile.soapui
+        env:
+          - name: "BUILD_LOGLEVEL"
+            value: "5"
+      type: JenkinsPipeline
+
+- apiVersion: "v1"
+  kind: "BuildConfig"
+  metadata:
     name: "cant-touch-this-pipeline-tag"
     labels:
       application: ${APPLICATION_NAME}

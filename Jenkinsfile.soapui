@@ -1,0 +1,41 @@
+pipeline {
+  agent {
+    node {
+        label 'maven'
+    }
+  }
+
+  stages {
+    stage ('preamble'){
+      steps {
+        script {
+          openshift.withCluster() {
+            openshift.withProject() {
+              echo "Project: ${openshift.project()}"
+              sh "oc get project"
+
+            }
+          }
+        }
+      }
+    }
+
+    stage ('package') {
+      steps {
+        script {
+          sh "mvn package"
+          sh "ls -lR . "
+        }
+      }
+    }
+    stage('soapui' {
+      agent{ label 'soapui'}
+        steps {
+	  script {
+            sh "printenv|sort"
+          }
+        }
+      }
+    
+  }
+}
