@@ -25,7 +25,7 @@ pipeline {
       steps {
         script {
             sh 'printenv|sort'
-            sh 'sleep 120'
+            sh 'ls -la /opt'
         }
       }
     }
