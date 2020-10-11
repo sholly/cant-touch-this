@@ -25,7 +25,7 @@ pipeline {
       steps {
         script {
             sh 'printenv|sort'
-            sh 'ls -la /opt'
+            sh 'ls -la /opt/SoapUI/bin'
         }
       }
     }
