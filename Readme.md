@@ -14,3 +14,5 @@ quayio secret and link to builder:
 Make sure you've logged into quay.io, then create the secret from the ~/.docker/config.json: 
 oc create secret generic quayio --from-file=.dockerconfigjson=/home/sholly/.docker/config.json --type=kubernetes.io/dockerconfigjson
 oc secrets link builder quayio
+
+figure out the deploy docs next
