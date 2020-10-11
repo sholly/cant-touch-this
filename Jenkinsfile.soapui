@@ -21,10 +21,11 @@ pipeline {
     }
 
     stage ('soapui') {
-      agent { label 'soapui' }
+      agent { label 'maven' }
       steps {
         script {
             sh 'printenv|sort'
+            sh 'sleep 120'
         }
       }
     }
