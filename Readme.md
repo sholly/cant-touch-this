@@ -11,5 +11,6 @@ set up github ssh key:
 set up template and shell script, see openshift/github-ssh-key
 
 quayio secret and link to builder: 
-oc create secret docker-registry quayio --docker-username=sholly --docker-password=password --docker-email=jshollen@redhat.com--docker-server=quay.io
-oc secrets add serviceaccount/builder secrets/quayio
+Make sure you've logged into quay.io, then create the secret from the ~/.docker/config.json: 
+oc create secret generic quayio --from-file=.dockerconfigjson=/home/sholly/.docker/config.json --type=kubernetes.io/dockerconfigjson
+oc secrets link builder quayio
