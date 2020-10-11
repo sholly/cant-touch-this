@@ -28,14 +28,5 @@ pipeline {
         }
       }
     }
-    stage('soapui' {
-      agent { label 'soapui'}
-        steps {
-	      script {
-            sh "printenv|sort"
-          }
-        }
-      }
-    
   }
 }
