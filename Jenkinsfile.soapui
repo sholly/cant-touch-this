@@ -29,9 +29,9 @@ pipeline {
       }
     }
     stage('soapui' {
-      agent{ label 'soapui'}
+      agent { label 'soapui'}
         steps {
-	  script {
+	      script {
             sh "printenv|sort"
           }
         }
