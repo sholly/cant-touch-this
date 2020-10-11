@@ -50,7 +50,8 @@ pipeline {
                   imgbc = openshift.selector("bc", "cant-touch-this-quayio").object()
                   imgbc.spec.output.to.name = "quay.io/sholly/cant-touch-this:${commit_abbrev}"
                   openshift.apply(imgbc)
-                  openshift.selector("bc", "cant-touch-this-quayio").startBuild("--from-file=./target/cant-touch-this.jar", "--wait=true", "--build-loglevel=5")
+                  openshift.selector("bc", "cant-touch-this-quayio").startBuild("--from-file=./target/cant-touch-this.jar", "--wait=true")
+                  //openshift.selector("bc", "cant-touch-this-quayio").startBuild("--from-file=./target/cant-touch-this.jar", "--wait=true", "--build-loglevel=5")
               }
            }
         }
