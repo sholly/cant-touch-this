@@ -3,6 +3,8 @@ package com.jayshollenberger.canttouchthis;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Map;
+
 @RestController
 public class CantTouchController {
 
@@ -19,5 +21,13 @@ public class CantTouchController {
     @GetMapping("/touch")
     public String noTouching() {
         return "no touching";
+    }
+
+    @GetMapping("/showenv")
+    public String showEnv() {
+
+        Map<String, String> env = System.getenv();
+
+        return env.entrySet().toString();
     }
 }
