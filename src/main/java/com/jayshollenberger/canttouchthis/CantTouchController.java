@@ -13,12 +13,12 @@ public class CantTouchController {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
     @GetMapping("/")
     public String root() {
-        return "can't touch this v0.0.3";
+        return "can't touch this v0.0.2";
     }
 
     @GetMapping("/cant")
     public String cantTouch() {
-        return "v0.0.3";
+        return "v0.0.2";
     }
 
     @GetMapping("/showenv")
